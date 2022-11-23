@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -12,8 +13,14 @@ public class App {
             console();
     
             // 메뉴 입력받기 
-            menuInput = sc.nextInt();
-    
+            // InputMismatchException에 대한 예외처리 진행
+            try {
+                menuInput = sc.nextInt();
+            } catch (InputMismatchException e) {
+                sc = new Scanner(System.in);
+                continue;
+            }
+
             switch(menuInput){
                 // 메모 작성
                 case 1:
@@ -24,7 +31,6 @@ public class App {
                     memo.GetMemoList();
                     break;
                 // 메모 수정
-
                 case 3:
                     memo.MemoModify();
                     break;
@@ -39,7 +45,6 @@ public class App {
                     break;
                 default:
                     System.out.println("잘못된 번호 입니다. 다시입력하세요.");
-                    continue;
             }
         }
 
