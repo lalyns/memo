@@ -3,11 +3,6 @@ import java.util.Scanner;
 
 public class Memo {
     // 멤버 변수
-    int             m_Number;
-    String          m_User;
-    String             m_PW;
-    String          m_Contents;
-    LocalDateTime   m_Date;
     MemoList        m_MemoList;
 
     // Constructor
@@ -18,12 +13,17 @@ public class Memo {
     // 메모 작성 구현
     public void MemoWrite()
     {   
+        String          user;
+        String          pw;
+        String          contents;
+        LocalDateTime   date;
+
         Scanner sc = new Scanner(System.in);
 
         // 메모 작성전 입력해야하는 정보(작성자명, 비밀번호) 입력받기
         System.out.println("----메모 작성하기----");
         System.out.println("작성자 명 입력 ---->");
-        this.m_User = sc.nextLine();
+        user = sc.nextLine();
 
         /*
          scanner -> string 값이 들어옴
@@ -33,61 +33,63 @@ public class Memo {
         */
 
         System.out.println("비밀번호 입력(0000~9999)");
-        String temp = sc.nextLine();
+        pw = sc.nextLine();
         boolean isCorrect = false;
         // 입력받은 값이 4자리가 아니거나 0000~9999의 수가아닐경우 재입력
         while (!isCorrect) {
-            if (temp.length() != 4) {
+            if (pw.length() != 4) {
                 System.out.println("비밀번호가 유효하지 않습니다. 다시입력해주세요.");
-                temp = sc.nextLine();
+                pw = sc.nextLine();
             }
             else {
                 // 입력받은 문자열이 숫자가 아닐경우 
                 try
                 {   
-                    int tempi = -1;
-                    tempi = Integer.parseInt(temp);
-                    this.m_PW = temp;
+                    Integer.parseInt(pw);
                     isCorrect = true;
                 }
                 catch (NumberFormatException e)
                 {
                     System.out.println("비밀번호가 유효하지 않습니다. 다시입력해주세요.");
-                    temp = sc.nextLine();
+                    pw = sc.nextLine();
                 }
             }
         }
 
         // 내용 작성
         System.out.println("내용을 작성해 주세요.");
-        this.m_Contents = sc.nextLine();
-        System.out.println("유저명: " + this.m_User + "(" + this.m_Contents + ")");
+        contents = sc.nextLine();
+        System.out.println("유저명: " + user + "(" + contents + ")");
         
         // 날짜 입력
-        this.m_Date = LocalDateTime.now();
+        date = LocalDateTime.now();
 
         // 내용을 리스트에 저장
-        m_MemoList.Setter(m_User, m_PW, m_Contents, m_Date);
+        m_MemoList.Setter(user, pw, contents, date);
     }
 
 
     // 메모장 목록 보여주기
     public void GetMemoList() {
-        System.out.println("글번호\t작성자\t작성시간\t내용");
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("글번호\t작성시간\t\t작성자\t\t내용");
+        System.out.println("-----------------------------------------------------------------------");
         for (int i=m_MemoList.GetLength(); i>0; i--)
         {
             MemoDataType temp = m_MemoList.Getter(i-1);
-            System.out.println(temp.get_index() + "\t" + temp.get_user() + "\t" + temp.get_date() + "\t" + temp.get_contents());
+
+            if (temp.get_index() == -1) continue;
+
+            System.out.println(temp.get_index() + "\t" + temp.get_date() + "\t" + temp.get_user() + "\t" + temp.get_contents());
         }
     }
+
     // 메모장 내용 수정하기
-//    - 수정할 글 번호를 입력 받는다.
-//    - 수정할 글이 존재하면 글을 수정하고 존재하지 않으면 존재하지 않는다고 메시지를 출력한다.
-//    - 수정할 글의 비밀번호를 입력 받는다.
-//    - 글을 수정하기 위해 입력한 비밀번호와 수정할 글의 비밀번호가 일치하면 글을 수정하고 일치하지 않으면 비밀번호가 일치하지 않는다는 메시지를 출력한다.
-//    - 비밀번호가 일치할 시 : 수정 내용 업데이트
-//    - 비밀번호 불일치 시 : 비밀번호가 일치하지 않는다는 메시지 출력
+    //    - 수정할 글 번호를 입력 받는다.
+    //    - 수정할 글이 존재하면 글을 수정하고 존재하지 않으면 존재하지 않는다고 메시지를 출력한다.
+    //    - 수정할 글의 비밀번호를 입력 받는다.
+    //    - 글을 수정하기 위해 입력한 비밀번호와 수정할 글의 비밀번호가 일치하면 글을 수정하고 일치하지 않으면 비밀번호가 일치하지 않는다는 메시지를 출력한다.
+    //    - 비밀번호가 일치할 시 : 수정 내용 업데이트
+    //    - 비밀번호 불일치 시 : 비밀번호가 일치하지 않는다는 메시지 출력
     public void MemoModify() {
 
         int index = -1;
@@ -98,33 +100,60 @@ public class Memo {
 
         // m_MemoList << 여기서 비교할 리스트를 가져온다.
 
-        if (index > m_MemoList.GetLength()) {
-            System.out.println("수정할 글이 존재하지 않습니다.");
-            return;
+        MemoDataType data = m_MemoList.Getter(index -1);
+
+        if (data.get_index() == -1) {
+            System.out.println("수정할 메모가 존재하지 않습니다.");    
         }
         
-        System.out.println("수정할 글 번호를 입력하세요.");
+        System.out.println("수정할 글의 비밀 번호를 입력하세요.");
         String input = "";
         sc = new Scanner(System.in);
         input = sc.nextLine();
 
-        // // if (input != m_MemoList.Getter(input))
-        // if (input == m_MemoList.Getter(index).get_pw()) {
-        //     m_MemoList.Modify(index, aa);
-        // }
+        if (input.equals(m_MemoList.Getter(index-1).get_pw())) {
+            System.out.println("수정할 글의 내용을 입력하세요.");
+            String newMemo = sc.nextLine();
+            m_MemoList.Modify(index-1, newMemo);
+        }
 
-        // else {
-        //     System.out.println("비밀번호가 일치하지 않습니다.");
-        //     return;
-        // }
+        else {
+            System.out.println("비밀번호가 일치하지 않습니다. 메뉴로 돌아갑니다.");
+            return;
+        }
         
 
     }
 
-
-
     // 메모장 내용 삭제하기
     public void MemoDelete() {
+        int index = -1;
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println("삭제할 글 번호를 입력하세요.");
+        index = sc.nextInt();
+
+        // m_MemoList << 여기서 비교할 리스트를 가져온다.
+        MemoDataType data = m_MemoList.Getter(index -1);
+
+        if (data.get_index() == -1) {
+            System.out.println("삭제할 메모가 존재하지 않습니다.");    
+        }
+        
+        System.out.println("삭제할 글의 비밀 번호를 입력하세요.");
+        String input = "";
+        sc = new Scanner(System.in);
+        input = sc.nextLine();
+        
+        if (input.equals(m_MemoList.Getter(index-1).get_pw())) {
+            System.out.println("해당 메모를 삭제합니다.");
+            this.m_MemoList.Delete(index-1);
+        }
+
+        else {
+            System.out.println("비밀번호가 일치하지 않습니다. 메뉴로 돌아갑니다.");
+            return;
+        }
+        
     }
 }
