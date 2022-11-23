@@ -12,29 +12,35 @@ public class App {
         Scanner sc = new Scanner(System.in);
         menuInput = sc.nextInt();
 
-        switch(menuInput){
-            // 메모 작성
-            case 1:
-                memo.MemoWrite(null, null, null);
-                break;
-            // 메모 목록 노출
-            case 2:
-                memo.GetMemoList();
-                break;
-            // 메모 수정
-            case 3:
-                memo.MemoModify();
-                break;
-            // 메모 삭제
-            case 4:
-                memo.MemoDelete();
-                break;
-            case 5:
-                // 콘솔창 종료
-                break;
-            default:
-                System.out.println("잘못된 번호 입니다. 다시입력하세요.");
-                console();
+        boolean isQuit = false;
+
+        while (!isQuit){
+            switch(menuInput){
+                // 메모 작성
+                case 1:
+                    memo.MemoWrite(null, null, null);
+                    break;
+                // 메모 목록 노출
+                case 2:
+                    memo.GetMemoList();
+                    break;
+                // 메모 수정
+                case 3:
+                    memo.MemoModify();
+                    break;
+                // 메모 삭제
+                case 4:
+                    memo.MemoDelete();
+                    break;
+                case 5:
+                    // 콘솔창 종료
+                    System.out.println("메모장이 종료됩니다.");
+                    isQuit = true;
+                    break;
+                default:
+                    System.out.println("잘못된 번호 입니다. 다시입력하세요.");
+                    continue;
+            }
         }
 
         
