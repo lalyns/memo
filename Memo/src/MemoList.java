@@ -8,6 +8,7 @@ class MemoDataType
     String _pw;
     String _contents;
     LocalDateTime _date;
+    boolean _isDeleted;
 
     public MemoDataType() {}
 
@@ -17,12 +18,14 @@ class MemoDataType
         this._pw        = pw;
         this._contents  = contents;
         this._date      = date;
+        this._isDeleted = false;
     }
     public int get_index() { return _index; }
     public String get_user() { return _user; }
     public String get_pw() { return _pw; }
     public String get_contents() { return _contents; }
     public LocalDateTime get_date() { return _date; }
+    public boolean isDeleted() { return _isDeleted; }
 }
 
 public class MemoList {
@@ -39,9 +42,13 @@ public class MemoList {
         if (index > this.list.size()) 
         { 
             System.out.println("인덱스 값을 초과했습니다."); 
-            return new MemoDataType();
+            return new MemoDataType(-1, null, null, null, null);
         }
-        return list.get(index);
+
+        MemoDataType memo = list.get(index);
+        if(memo.isDeleted()) return new MemoDataType(-1, null, null, null, null);
+
+        return memo;
     }
 
     public int GetLength() {
@@ -59,6 +66,21 @@ public class MemoList {
     public void Modify(int index, String context)
     {
         MemoDataType data = this.Getter(index);
+        
+        if(data.isDeleted())
+        {
+            return;
+        }
+
         data._contents = context;
+    }
+
+    // 메모 리스트 내용 삭제하기
+    //  - 글 1건을 삭제하는 메소드가 있다.
+    //  - 글 삭제 후 글 번호를 다시 붙여준다.
+    //  - 글이 삭제된 후 새 글이 입력될 때 idx가 기존 idx값에 이어서 1씩 증가할 수 있도록 count의 값을 수정한다.
+    public void Delete(int index) {
+        MemoDataType data = this.Getter(index);
+        data._index = -1;
     }
 }
