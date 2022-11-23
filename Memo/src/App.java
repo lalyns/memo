@@ -4,15 +4,14 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         boolean isQuit = false;
+        int menuInput = -1;
+        Memo memo = new Memo();
+        Scanner sc = new Scanner(System.in);
 
         while (!isQuit){
             console();
     
-            int menuInput = -1;
-            Memo memo = new Memo();
-    
             // 메뉴 입력받기 
-            Scanner sc = new Scanner(System.in);
             menuInput = sc.nextInt();
     
             switch(menuInput){
@@ -43,8 +42,7 @@ public class App {
             }
         }
 
-        
-        
+        sc.close();
     }
 
     // 콘솔창 구현부
