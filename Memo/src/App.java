@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.Scanner;
 
 public class App {
@@ -14,15 +13,19 @@ public class App {
         menuInput = sc.nextInt();
 
         switch(menuInput){
+            // 메모 작성
             case 1:
                 memo.MemoWrite(null, null, null);
                 break;
+            // 메모 목록 노출
             case 2:
                 memo.GetMemoList();
                 break;
+            // 메모 수정
             case 3:
                 memo.MemoModify();
                 break;
+            // 메모 삭제
             case 4:
                 memo.MemoDelete();
                 break;
