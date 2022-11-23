@@ -24,6 +24,7 @@ public class App {
                     memo.GetMemoList();
                     break;
                 // 메모 수정
+
                 case 3:
                     memo.MemoModify();
                     break;
