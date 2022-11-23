@@ -54,4 +54,11 @@ public class MemoList {
         MemoDataType data = new MemoDataType(count, user, pw, contents, date);
         list.add(data);
     }
+
+    // 메모 리스트 내용 작성하기
+    public void Modify(int index, String context)
+    {
+        MemoDataType data = this.Getter(index);
+        data._contents = context;
+    }
 }

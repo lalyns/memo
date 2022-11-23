@@ -87,27 +87,36 @@ public class Memo {
 //    - 비밀번호가 일치할 시 : 수정 내용 업데이트
 //    - 비밀번호 불일치 시 : 비밀번호가 일치하지 않는다는 메시지 출력
     public void MemoModify() {
-        int m_Number2;
-        int m_PW2;
+
+        int index = -1;
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("수정할 글 번호를 입력하세요.");
-        Scanner sc_Num = new Scanner(System.in);
-        m_Number2 = sc_Num.nextInt();
+        index = sc.nextInt();
 
-        if (m_Number2 == m_Number) {
-            System.out.println("비밀번호를 입력하세요.");
-            Scanner sc_PW = new Scanner(System.in);
-            m_PW2 = sc_PW.nextInt();
-            if (m_PW == m_PW2) {
-//                this.GetMemoList()
-                System.out.println();
-            } else {
-                System.out.println("비밀번호가 일치하지 않습니다.");
-            }
-        } else {
+        // m_MemoList << 여기서 비교할 리스트를 가져온다.
+
+        if (index > m_MemoList.GetLength()) {
             System.out.println("수정할 글이 존재하지 않습니다.");
-            this.GetMemoList();
+            return;
         }
+        
+        System.out.println("수정할 글 번호를 입력하세요.");
+        String input = "";
+        sc = new Scanner(System.in);
+        input = sc.nextLine();
+
+        // // if (input != m_MemoList.Getter(input))
+        // if (input == m_MemoList.Getter(index).get_pw()) {
+        //     m_MemoList.Modify(index, aa);
+        // }
+
+        // else {
+        //     System.out.println("비밀번호가 일치하지 않습니다.");
+        //     return;
+        // }
+        
+
     }
 
 
