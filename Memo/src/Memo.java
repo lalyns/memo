@@ -16,7 +16,6 @@ public class Memo {
     }
 
     // 메모 작성 구현
-
     public void MemoWrite()
     {   
         Scanner sc = new Scanner(System.in);
@@ -25,7 +24,6 @@ public class Memo {
         System.out.println("----메모 작성하기----");
         System.out.println("작성자 명 입력 ---->");
         this.m_User = sc.nextLine();
-
 
         /*
          scanner -> string 값이 들어옴
