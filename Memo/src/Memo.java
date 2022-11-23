@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class Memo {
     // 멤버 변수
-    int m_Number;
-    String m_User;
-    int m_PW;
-    String m_Contents;
-    LocalDateTime m_Date;
-    MemoList m_MemoList;
+    int             m_Number;
+    String          m_User;
+    int             m_PW;
+    String          m_Contents;
+    LocalDateTime   m_Date;
+    MemoList        m_MemoList;
 
     // Constructor
     public Memo() {
