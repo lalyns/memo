@@ -3,16 +3,16 @@ import java.util.Scanner;
 
 public class Memo {
     // 멤버 변수
-    int m_Number;
-    String m_User;
-    int m_PW;
-    String m_Contents;
-    LocalDateTime m_Date;
-    MemoList m_MemoList;
+    int             m_Number;
+    String          m_User;
+    int             m_PW;
+    String          m_Contents;
+    LocalDateTime   m_Date;
+    MemoList        m_MemoList;
 
     // Constructor
     public Memo() {
-
+        m_MemoList = new MemoList();
     }
 
     // 메모 작성 구현
@@ -59,22 +59,26 @@ public class Memo {
         // 내용 작성
         System.out.println("내용을 작성해 주세요.");
         this.m_Contents = sc.nextLine();
-
         System.out.println("유저명: " + this.m_User + "(" + this.m_Contents + ")");
         
         // 날짜 입력
         this.m_Date = LocalDateTime.now();
 
         // 내용을 리스트에 저장
-        m_MemoList.Setter(/*m_user, m_pw, m_contents, m_date*/);
-        sc.close();
+        m_MemoList.Setter(m_User, m_PW, m_Contents, m_Date);
     }
+
 
     // 메모장 목록 보여주기
     public void GetMemoList() {
-
+        System.out.println("글번호\t작성자\t작성시간\t내용");
+        System.out.println("-----------------------------------------------------------");
+        for (int i=m_MemoList.GetLength(); i>0; i--)
+        {
+            MemoDataType temp = m_MemoList.Getter(i-1);
+            System.out.println(temp.get_index() + "\t" + temp.get_user() + "\t" + temp.get_date() + "\t" + temp.get_contents());
+        }
     }
-
     // 메모장 내용 수정하기
 //    - 수정할 글 번호를 입력 받는다.
 //    - 수정할 글이 존재하면 글을 수정하고 존재하지 않으면 존재하지 않는다고 메시지를 출력한다.
