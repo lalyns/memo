@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 class MemoDataType
@@ -7,12 +8,12 @@ class MemoDataType
     String _user;
     String _pw;
     String _contents;
-    LocalDateTime _date;
+    String _date;
     boolean _isDeleted;
 
     public MemoDataType() {}
 
-    public MemoDataType(int index, String user, String pw, String contents, LocalDateTime date) {
+    public MemoDataType(int index, String user, String pw, String contents, String date) {
         this._index     = index;
         this._user      = user;
         this._pw        = pw;
@@ -24,7 +25,7 @@ class MemoDataType
     public String get_user() { return _user; }
     public String get_pw() { return _pw; }
     public String get_contents() { return _contents; }
-    public LocalDateTime get_date() { return _date; }
+    public String get_date() { return _date; }
     public boolean isDeleted() { return _isDeleted; }
 }
 
@@ -58,7 +59,9 @@ public class MemoList {
     // 메모 리스트 작성하기
     public void Setter(String user, String pw, String contents, LocalDateTime date) {
         count++; 
-        MemoDataType data = new MemoDataType(count, user, pw, contents, date);
+        String tDateTime = "";
+        tDateTime = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        MemoDataType data = new MemoDataType(count, user, pw, contents, tDateTime);
         list.add(data);
     }
 

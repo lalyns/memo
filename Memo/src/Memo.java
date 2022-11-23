@@ -71,15 +71,15 @@ public class Memo {
 
     // 메모장 목록 보여주기
     public void GetMemoList() {
-        System.out.println("글번호\t작성자\t작성시간\t내용");
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("글번호\t작성시간\t\t작성자\t\t내용");
+        System.out.println("-----------------------------------------------------------------------");
         for (int i=m_MemoList.GetLength(); i>0; i--)
         {
             MemoDataType temp = m_MemoList.Getter(i-1);
 
             if (temp.get_index() == -1) continue;
 
-            System.out.println(temp.get_index() + "\t" + temp.get_user() + "\t" + temp.get_date() + "\t" + temp.get_contents());
+            System.out.println(temp.get_index() + "\t" + temp.get_date() + "\t" + temp.get_user() + "\t" + temp.get_contents());
         }
     }
 
