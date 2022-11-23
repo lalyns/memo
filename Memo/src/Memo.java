@@ -14,10 +14,10 @@ public class Memo {
     }
 
     // 메모 작성 구현
-    public void MemoWrite(String user, String pw, String contents)
+    public void MemoWrite()
     {
-        this.m_User = user;
-        this.m_Contents = contents;
+        // this.m_User = user;
+        // this.m_Contents = contents;
 
         /*
          scanner -> string 값이 들어옴
@@ -28,9 +28,9 @@ public class Memo {
         */
 
         // 입력내용 
-        // this.m_PW = new int[4] {0,0,0,0};
+        // this.m_PW = new int[4] {0, 0, 0, 0};
 
-        this.m_Date = LocalDateTime.now();
+        // this.m_Date = LocalDateTime.now();
 
         // 내용을 리스트에 저장
     }

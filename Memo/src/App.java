@@ -3,22 +3,22 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         
-        console();
-
-        int menuInput = -1;
-        Memo memo = new Memo();
-
-        // 메뉴 입력받기 
-        Scanner sc = new Scanner(System.in);
-        menuInput = sc.nextInt();
-
         boolean isQuit = false;
 
         while (!isQuit){
+            console();
+    
+            int menuInput = -1;
+            Memo memo = new Memo();
+    
+            // 메뉴 입력받기 
+            Scanner sc = new Scanner(System.in);
+            menuInput = sc.nextInt();
+    
             switch(menuInput){
                 // 메모 작성
                 case 1:
-                    memo.MemoWrite(null, null, null);
+                    memo.MemoWrite();
                     break;
                 // 메모 목록 노출
                 case 2:
