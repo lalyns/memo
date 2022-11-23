@@ -102,7 +102,7 @@ public class Memo {
 
         MemoDataType data = m_MemoList.Getter(index -1);
 
-        if (data.get_index() == -1) {
+        if (data.get_index() == -1 || data.isDeleted()) {
             System.out.println("수정할 메모가 존재하지 않습니다.");    
         }
         

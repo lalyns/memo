@@ -85,5 +85,6 @@ public class MemoList {
     public void Delete(int index) {
         MemoDataType data = this.Getter(index);
         data._index = -1;
+        data._isDeleted = true;
     }
 }
