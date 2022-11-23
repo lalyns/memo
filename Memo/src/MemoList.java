@@ -1,64 +1,57 @@
-    public class MemoList {
-        private String m_User, m_Contents, m_Date;
-        private int m_PW;
-        private Memo allUsers;      // 객체간 상호관계
-        private int count = 0;              // 순번
-        MemoList arr[];
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+class MemoDataType
+{
+    int _index;
+    String _user;
+    int _pw;
+    String _contents;
+    LocalDateTime _date;
+
+    public MemoDataType() {}
+
+    public MemoDataType(int index, String user, int pw, String contents, LocalDateTime date) {
+        this._index     = index;
+        this._user      = user;
+        this._pw        = pw;
+        this._contents  = contents;
+        this._date      = date;
+    }
+    public int get_index() { return _index; }
+    public String get_user() { return _user; }
+    public int get_pw() { return _pw; }
+    public String get_contents() { return _contents; }
+    public LocalDateTime get_date() { return _date; }
+}
+
+public class MemoList {
+
+    static int count = 0;
+    ArrayList<MemoDataType> list;
 
     public MemoList() {
-        arr = new MemoList[10];     // 배열 초기화
-    }
-    public MemoList(String m_User, String m_Contents, String m_Date, int m_PW) {
-        this.m_User = m_User;
-        this.m_Contents = m_Contents;
-        this.m_Date = m_Date;
-        this.m_PW = m_PW;
+        list = new ArrayList<>();
     }
 
-        // 목록 조회하기
-    public void setUser() {
-        this.m_User = m_User;
-    }
-    public void setContents() {
-        this.m_Contents = m_Contents;
-    }
-    public void setDate() {
-        this.m_Date = m_Date;
-    }
-    public void setPassword() {
-        this.m_PW = m_PW;
+    // 목록 조회하기
+    public MemoDataType Getter(int index) {
+        if (index > this.list.size()) 
+        { 
+            System.out.println("인덱스 값을 초과했습니다."); 
+            return new MemoDataType();
+        }
+        return list.get(index);
     }
 
-
-        // 메모 리스트 작성하기
-    public void getUser() {
-        return m_User;
-    }
-    public void getContents() {
-        return m_Contents;
-    }
-    public void getDate() {
-        return m_Date;
-    }
-    public void getPassword() {
-        return m_PW;
+    public int GetLength() {
+        return this.list.size();
     }
 
-        // List 출력문
-    public void printuserList() {
-        System.out.println(count+" ID: "+m_User+" PW:"+m_PW+" Memo: "+m_Contents+" Time: "+m_Date);
-    }
-        // count를 기준으로 검색
-    public void searchMemoList() {
-        // ?
-    }
-
-
-
-    public Memo getallUsers() {
-        return allUsers;
-    }
-    public void setAllUsers() {
-        return allUsers;
+    // 메모 리스트 작성하기
+    public void Setter(String user, int pw, String contents, LocalDateTime date) {
+        count++; 
+        MemoDataType data = new MemoDataType(count, user, pw, contents, date);
+        list.add(data);
     }
 }
