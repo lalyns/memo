@@ -5,7 +5,7 @@ public class Memo {
     // 멤버 변수
     int             m_Number;
     String          m_User;
-    int             m_PW;
+    String             m_PW;
     String          m_Contents;
     LocalDateTime   m_Date;
     MemoList        m_MemoList;
@@ -44,8 +44,10 @@ public class Memo {
             else {
                 // 입력받은 문자열이 숫자가 아닐경우 
                 try
-                {
-                    this.m_PW = Integer.parseInt(temp);
+                {   
+                    int tempi = -1;
+                    tempi = Integer.parseInt(temp);
+                    this.m_PW = temp;
                     isCorrect = true;
                 }
                 catch (NumberFormatException e)

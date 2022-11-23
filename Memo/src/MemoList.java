@@ -5,13 +5,13 @@ class MemoDataType
 {
     int _index;
     String _user;
-    int _pw;
+    String _pw;
     String _contents;
     LocalDateTime _date;
 
     public MemoDataType() {}
 
-    public MemoDataType(int index, String user, int pw, String contents, LocalDateTime date) {
+    public MemoDataType(int index, String user, String pw, String contents, LocalDateTime date) {
         this._index     = index;
         this._user      = user;
         this._pw        = pw;
@@ -20,7 +20,7 @@ class MemoDataType
     }
     public int get_index() { return _index; }
     public String get_user() { return _user; }
-    public int get_pw() { return _pw; }
+    public String get_pw() { return _pw; }
     public String get_contents() { return _contents; }
     public LocalDateTime get_date() { return _date; }
 }
@@ -49,7 +49,7 @@ public class MemoList {
     }
 
     // 메모 리스트 작성하기
-    public void Setter(String user, int pw, String contents, LocalDateTime date) {
+    public void Setter(String user, String pw, String contents, LocalDateTime date) {
         count++; 
         MemoDataType data = new MemoDataType(count, user, pw, contents, date);
         list.add(data);
