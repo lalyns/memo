@@ -11,11 +11,6 @@ public class Passward {
     public Passward() {};
 
     // 매소드
-
-    /*
-    scanner -> string 값이 들어옴
-    단, string 길이 값이 4가 아니면 재입력 받게 하기 범위(0000~9999)
-    */
     public static String createPassward() { 
         String pw = "";
 
@@ -30,7 +25,7 @@ public class Passward {
             if(pw.length() != 4)
             {
                 System.out.println("비밀번호가 유효하지 않습니다. 다시입력해주세요.");
-                sc.nextLine();
+                pw = sc.nextLine();
                 continue;
             }
 
@@ -48,9 +43,14 @@ public class Passward {
 
         return pw; 
     };
-    public boolean isCorrectedPassward(String pw) { 
-        
-        return true; 
+
+    // 매개변수의 비밀번호와 입력된 비밀번호가 같은지 확인함
+    public static boolean isCorrectedPassward(MemoList.MemoDataType data) { 
+        System.out.println("해당 글의 비밀 번호를 입력하세요.");
+        String input = "";
+        input = sc.nextLine();
+
+        return input.equals(data.get_pw()) ; 
     };
 
 

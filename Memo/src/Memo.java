@@ -5,6 +5,7 @@ public class Memo {
     // 멤버 변수
     private MemoList        memoList;
     private Scanner         sc;
+    
     // Constructor
     public Memo() {
         memoList = new MemoList();
@@ -24,38 +25,7 @@ public class Memo {
         System.out.println("작성자 명 입력 ---->");
         user = sc.nextLine();
 
-        /*
-        scanner -> string 값이 들어옴
-        단, string 길이 값이 4가 아니면 재입력 받게 하기
-        범위(0000~9999)
-        저장할때 string을 int로 변환해서 저장
-        */
-
-        System.out.println("비밀번호 입력(0000~9999)");
-        pw = sc.nextLine();
-        boolean isCorrect = false;
-        // 입력받은 값이 4자리가 아니거나 0000~9999의 수가아닐경우 재입력
-
-        // 비밀번호 관련 클래스 작성
-        while (!isCorrect) {
-            if (pw.length() != 4) {
-                System.out.println("비밀번호가 유효하지 않습니다. 다시입력해주세요.");
-                pw = sc.nextLine();
-            }
-            else {
-                // 입력받은 문자열이 숫자가 아닐경우 
-                try
-                {   
-                    Integer.parseInt(pw);
-                    isCorrect = true;
-                }
-                catch (NumberFormatException e)
-                {
-                    System.out.println("비밀번호가 유효하지 않습니다. 다시입력해주세요.");
-                    pw = sc.nextLine();
-                }
-            }
-        }
+        pw = Passward.createPassward();
 
         // 내용 작성
         System.out.println("내용을 작성해 주세요.");
@@ -76,11 +46,11 @@ public class Memo {
         System.out.println("-----------------------------------------------------------------------");
         for (int i=memoList.getLength(); i>0; i--)
         {
-            var temp = memoList.getter(i-1);
+            var data = memoList.getter(i-1);
 
-            if (temp.get_index() == -1) continue;
+            if (data.isOutOfIndex()) continue;
 
-            System.out.println(temp.get_index() + "\t" + temp.get_date() + "\t" + temp.get_user() + "\t" + temp.get_contents());
+            System.out.println(data.get_index() + "\t" + data.get_date() + "\t" + data.get_user() + "\t" + data.get_contents());
         }
     }
 
@@ -102,15 +72,11 @@ public class Memo {
 
         var data = memoList.getter(index -1);
 
-        if (data.get_index() == -1 || data.isDeleted()) {
+        if (data.isOutOfIndex() || data.isDeleted()) {
             System.out.println("수정할 메모가 존재하지 않습니다.");    
         }
         
-        System.out.println("수정할 글의 비밀 번호를 입력하세요.");
-        String input = "";
-        input = sc.nextLine();
-
-        if (!input.equals(memoList.getter(index-1).get_pw())) {
+        if (!Passward.isCorrectedPassward(data)) {
             System.out.println("비밀번호가 일치하지 않습니다. 메뉴로 돌아갑니다.");
             return;
         }
@@ -131,15 +97,11 @@ public class Memo {
         // m_MemoList << 여기서 비교할 리스트를 가져온다.
         var data = memoList.getter(index -1);
 
-        if (data.get_index() == -1) {
+        if (data.isOutOfIndex()) {
             System.out.println("삭제할 메모가 존재하지 않습니다.");    
         }
         
-        System.out.println("삭제할 글의 비밀 번호를 입력하세요.");
-        String input = "";
-        input = sc.nextLine();
-        
-        if (!input.equals(memoList.getter(index-1).get_pw())) {
+        if (!Passward.isCorrectedPassward(data)) {
             System.out.println("비밀번호가 일치하지 않습니다. 메뉴로 돌아갑니다.");
             return;
         }

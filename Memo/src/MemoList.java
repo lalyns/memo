@@ -13,7 +13,8 @@ public class MemoList {
         private String contents;
         private String date;
         private boolean isDeleted;
-    
+        
+        // 생성자
         public MemoDataType() {}
     
         public MemoDataType(int index, String user, String pw, String contents, String date) {

@@ -6,11 +6,11 @@ public class App {
         
         boolean isQuit = false;
         int menuInput = -1;
-        memo memo = new memo();
+        Memo memo = new Memo();
         Scanner sc = new Scanner(System.in);
 
         while (!isQuit){
-            PrintMenu();
+            printMenu();
     
             // 메뉴 입력받기 
             // InputMismatchException에 대한 예외처리 진행
@@ -52,7 +52,7 @@ public class App {
     }
 
     // 콘솔창 구현부
-    public static void PrintMenu()
+    public static void printMenu()
     {
         System.out.println("-------메모장-------");
         System.out.println("1. 메모 입력");
