@@ -7,7 +7,7 @@ public class Passward {
 
     private static Scanner sc = new Scanner(System.in);
 
-    // 생성자
+    // Constructor
     public Passward() {};
 
     // 매소드
