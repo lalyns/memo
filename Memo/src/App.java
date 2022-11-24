@@ -6,11 +6,11 @@ public class App {
         
         boolean isQuit = false;
         int menuInput = -1;
-        Memo memo = new Memo();
+        memo memo = new memo();
         Scanner sc = new Scanner(System.in);
 
         while (!isQuit){
-            console();
+            PrintMenu();
     
             // 메뉴 입력받기 
             // InputMismatchException에 대한 예외처리 진행
@@ -24,19 +24,19 @@ public class App {
             switch(menuInput){
                 // 메모 작성
                 case 1:
-                    memo.MemoWrite();
+                    memo.memoWrite();
                     break;
                 // 메모 목록 노출
                 case 2:
-                    memo.GetMemoList();
+                    memo.getMemoList();
                     break;
                 // 메모 수정
                 case 3:
-                    memo.MemoModify();
+                    memo.memoModify();
                     break;
                 // 메모 삭제
                 case 4:
-                    memo.MemoDelete();
+                    memo.memoDelete();
                     break;
                 case 5:
                     // 콘솔창 종료
@@ -52,7 +52,7 @@ public class App {
     }
 
     // 콘솔창 구현부
-    public static void console()
+    public static void PrintMenu()
     {
         System.out.println("-------메모장-------");
         System.out.println("1. 메모 입력");
