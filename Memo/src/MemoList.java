@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemoList {
+    // 전역 변수
+    public static final int OUTOFINDEX = -1;
+    public static int count = 0;
 
     static class MemoDataType
     {
+        // 이너 클래스 멤버변수
         private int index;
         private String user;
         private String pw;
@@ -34,15 +38,16 @@ public class MemoList {
         public boolean isDeleted() { return isDeleted; }
         public boolean isOutOfIndex() { return index == MemoList.OUTOFINDEX; }
     }
-    
-    static int count = 0;
-    public static final int OUTOFINDEX = -1;
+
+    // 멤버변수
     private List<MemoDataType> list;
 
+    // Constructor
     public MemoList() {
        list = new ArrayList<>();
     }
-
+    
+    // ------------------------- 메소드 ------------------------
     // 목록 조회하기
     public MemoDataType getter(int index) {
         if (index > this.list.size()) 
